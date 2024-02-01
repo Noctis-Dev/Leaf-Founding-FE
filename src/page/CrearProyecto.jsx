@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useAccount, useApi, useAlert } from "@gear-js/react-hooks";
 import { web3FromSource } from "@polkadot/extension-dapp";
-import { ProgramMetadata } from '@gear-js/api';
+import { ProgramMetadata } from "@gear-js/api";
 import { PROGRAM } from "../const";
 
     function CrearProyecto(){
 
 
         
-        var message;
+        let message;
 
         const alert = useAlert();
         const { accounts, account } = useAccount();
@@ -16,12 +16,25 @@ import { PROGRAM } from "../const";
 
         console.log(PROGRAM)
 
-        const programIDFT = "0x4b06a36587034fc8ca7b98082dbd2c7e53b5f977aefa623398fa90cc9fe3a245";
-        const meta2 =
-        "0001000100000000000104000000010900000000000000010d000000711148000808696f18496e69744654000004013466745f70726f6772616d5f696404011c4163746f72496400000410106773746418636f6d6d6f6e287072696d6974697665731c4163746f724964000004000801205b75383b2033325d000008000003200000000c000c0000050300100808696f4c4c65616674436f6e7472616374416374696f6e00011818446f6e617465080014010c75333200001801107531323800000020465443726561746504001801107531323800010024465444657374726f790400180110753132380002002846545472616e7366657204001801107531323800030040446f6e6174696f6e5265676973747279040014010c7533320004003443726561746550726f6a6563741401147469746c651c0118537472696e6700012c6465736372697074696f6e1c0118537472696e67000148636f6e737472756374696f6e5f676f616c7318011075313238000134666f756e64696e675f676f616c1801107531323800011075726c7320012c5665633c537472696e673e000500001400000505001800000507001c0000050200200000021c00240808696f484c65616674436f6e74726163744576656e74000120405375636365737366756c437265617465000000445375636365737366756c44657374726f79000100485375636365737366756c5472616e736665720002005c5375636365737366756c43726561746550726f6a65637404011c70726f6a65637428011c50726f6a6563740003004c5375636365737366756c42616c616e63654f6604011c62616c616e636518011075313238000400485375636365737366756c446f6e6174696f6e040118616d6f756e7418011075313238000500384661696c6564446f6e6174696f6e04011c6d6573736167651c0118537472696e67000600685375636365737366756c446f6e6174696f6e526567697374727904012072656769737472792c01345665633c446f6e6174696f6e3e00070000280808696f1c50726f6a65637400001c0118617574686f7204011c4163746f7249640001147469746c651c0118537472696e6700012c6465736372697074696f6e1c0118537472696e67000148636f6e737472756374696f6e5f676f616c7318011075313238000134666f756e64696e675f676f616c18011075313238000144646f6e6174696f6e735f62616c616e63651801107531323800011075726c7320012c5665633c537472696e673e00002c0000023000300808696f20446f6e6174696f6e000008012c646f6e6174696f6e5f696414010c753332000118616d6f756e74180110753132380000340808696f444c656166436f6e7472616374537461746500000c012070726f6a6563747338014c5665633c287533322c2050726f6a656374293e000144646f6e6174696f6e5f72656769737472794001645665633c287533322c205665633c446f6e6174696f6e3e293e0001347363726f775f62616c616e6365180110753132380000380000023c003c000004081428004000000244004400000408142c00";
-    
+        const programIDFT = "0xb08ecb5a67d47b092d698aef2bfaeb52cf6bcdc2524d721a0f23e95b4cba7994";
+        const meta2 = "0002000000010000000001010000000000000000010200000011010c000808696f18416374696f6e0001042848656c6c6f576f726c6400000000040808696f144576656e74000104304578616d706c654576656e7400000000080000050200";
+        
         const metadata = ProgramMetadata.from(meta2);
-
+        
+        const handlesaveClick = async () => {
+            message = {
+                destination: programIDFT, 
+                payload: {
+                    "HelloWorld": ""
+                },
+                gasLimit: 899819245,
+                value: 0,
+            }
+            
+            console.log(message)
+            signer()
+        }
+        
         const signer = async () => {
             const localaccount = account?.address;
             const isVisibleAccount = accounts.some((visibleAccount) => visibleAccount.address === localaccount);
@@ -53,26 +66,7 @@ import { PROGRAM } from "../const";
             }
         };
 
-        const handlesaveClick = () => {
-            message = {
-                destination: programIDFT, 
-                source: account?.address,
-                payload: {
-                    createProject: {
-                        title: title,
-                        description: description,
-                        construction_goals: 5,
-                        founding_goal: 5000,
-                        urls: ["asdfadsf", "asdfasdf"]
-                    }
-                },
-                gasLimit: 899819245,
-                value: 0,
-            },
-            
-            console.log(message)
-            signer();
-        }
+        
 
         const [title, setTitle] = useState("");
 
@@ -92,11 +86,11 @@ import { PROGRAM } from "../const";
 
 
         return(
-            <>
+            
                 <div className="container auto-cols-auto gap-4 bg-gray-900">
                     <form className="w-1/2 ml-[110px] pt-11">
                         <p className=" text-3xl text-green-500 font-bold mb-11 pt-11">CREAR PROYECTO</p> 
-                        <div class="mb-11">
+                        <div className="mb-11">
                             <label for="title"  className="block text-xl text-green-400 font-bold pt-8 mb-5">Nombre del proyecto</label>
                             <input type="text" value={title} onChange={TitleInputChange} id="title" className="border-gray-800 bg-gray-600 shadow-sm border text-gray-900 text-sm rounded-lg focus:ring-border-gray-900 focus:border-gray-900 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-gray-900 dark:focus:border-gray-900 dark:shadow-sm-light" placeholder="Mi primer proyecto" />
                         </div>
@@ -230,7 +224,7 @@ import { PROGRAM } from "../const";
                             </div>
                         </form>
                     </div>
-                </>
+            
             )
         }
 

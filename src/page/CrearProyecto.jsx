@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAccount, useApi, useAlert } from "@gear-js/react-hooks";
 import { web3FromSource } from "@polkadot/extension-dapp";
 import { ProgramMetadata } from "@gear-js/api";
-import { PROGRAM } from "../const";
+import { PROGRAM, METADATA } from "../const";
 
     function CrearProyecto(){
 
@@ -14,10 +14,10 @@ import { PROGRAM } from "../const";
         const { accounts, account } = useAccount();
         const { api } = useApi();
 
-        console.log(PROGRAM)
+        console.log(PROGRAM.PROGRAM_ID + " " + METADATA.META)
 
-        const programIDFT = "0xb08ecb5a67d47b092d698aef2bfaeb52cf6bcdc2524d721a0f23e95b4cba7994";
-        const meta2 = "0002000000010000000001010000000000000000010200000011010c000808696f18416374696f6e0001042848656c6c6f576f726c6400000000040808696f144576656e74000104304578616d706c654576656e7400000000080000050200";
+        const programIDFT = PROGRAM.PROGRAM_ID;
+        const meta2 = METADATA.META;
         
         const metadata = ProgramMetadata.from(meta2);
         
@@ -25,7 +25,16 @@ import { PROGRAM } from "../const";
             message = {
                 destination: programIDFT, 
                 payload: {
-                    "HelloWorld": ""
+                    "HelloAction": "",
+                    "CreateProject": {
+                        "name": "Str",
+                        "description": "Str"
+                    },
+                    "UpdateProject": {
+                        "id": "U128",
+                        "name": "Str",
+                        "description": "Str"
+                    }
                 },
                 gasLimit: 899819245,
                 value: 0,

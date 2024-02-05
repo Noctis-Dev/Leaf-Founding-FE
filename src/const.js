@@ -10,4 +10,8 @@ const PROGRAM = {
     PROGRAM_ID: import.meta.env.VITE_PROGRAM_ID    
 }
 
-export { ADDRESS, LOCAL_STORAGE, PROGRAM };
+const METADATA = {
+    META: import.meta.env.VITE_METADATA  
+}
+
+export { ADDRESS, LOCAL_STORAGE, PROGRAM, METADATA };

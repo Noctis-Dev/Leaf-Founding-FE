@@ -16,25 +16,22 @@ import { PROGRAM, METADATA } from "../const";
 
         console.log(PROGRAM.PROGRAM_ID + " " + METADATA.META)
 
-        const programIDFT = PROGRAM.PROGRAM_ID;
-        const meta2 = METADATA.META;
+        const programIDFT = "0xdeca7bd098f6cbee049d0919e3fff73e1f0fa3ec9a083c9d644f86362a3b8613";
+        const meta2 = "00020000000100000000010100000000000000000103000000fd0528000808696f18416374696f6e00010c2c48656c6c6f416374696f6e0000003443726561746550726f6a6563740801106e616d65040118537472696e6700012c6465736372697074696f6e040118537472696e670001003455706461746550726f6a6563740c01086964080110753132380001106e616d65040118537472696e6700012c6465736372697074696f6e040118537472696e67000200000400000502000800000507000c0808696f444c656166436f6e74726163745374617465000004012070726f6a656374731001505665633c28753132382c2050726f6a656374293e00001000000214001400000408081800180808696f1c50726f6a65637400000c01146f776e65721c011c4163746f7249640001106e616d65040118537472696e6700012c6465736372697074696f6e040118537472696e6700001c10106773746418636f6d6d6f6e287072696d6974697665731c4163746f724964000004002001205b75383b2033325d000020000003200000002400240000050300";
         
         const metadata = ProgramMetadata.from(meta2);
+
         
         const handlesaveClick = async () => {
             message = {
                 destination: programIDFT, 
                 payload: {
-                    "HelloAction": "",
+        
                     "CreateProject": {
-                        "name": "Str",
-                        "description": "Str"
+                        "name": "pimpeparopompopapspoaspas",
+                        "description": "la iguala ksdjkasdjkasjkdaksld"
                     },
-                    "UpdateProject": {
-                        "id": "U128",
-                        "name": "Str",
-                        "description": "Str"
-                    }
+                   
                 },
                 gasLimit: 899819245,
                 value: 0,

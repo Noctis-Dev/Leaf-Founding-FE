@@ -1,16 +1,40 @@
 'use client';
 
-import { Button } from 'flowbite-react';
+import { Button, } from 'flowbite-react';
 import { HiOutlineArrowRight, HiShoppingCart } from 'react-icons/hi';
+import { useApi, useAlert } from "@gear-js/react-hooks";
+import { ProgramMetadata } from "@gear-js/api";
 import { Pagination } from 'flowbite-react';
-import { Card } from 'flowbite-react';
 import {CardPopular} from '../components/Card/CardPopular'
 import {CardDonation} from '../components/Card/Card'
 import {CardHorizontal} from '../components/Card/CardHorizontal'
 import { useState, useEffect } from 'react';
-
+import { AnyJson } from '@polkadot/types/types';
 
 function Home(){
+
+  const { api } = useApi();
+
+  const alert = useAlert();
+
+  const [fullState, setFullState] = useState();
+
+  const programIDFT = "0xdeca7bd098f6cbee049d0919e3fff73e1f0fa3ec9a083c9d644f86362a3b8613";
+  const meta2 = "00020000000100000000010100000000000000000103000000fd0528000808696f18416374696f6e00010c2c48656c6c6f416374696f6e0000003443726561746550726f6a6563740801106e616d65040118537472696e6700012c6465736372697074696f6e040118537472696e670001003455706461746550726f6a6563740c01086964080110753132380001106e616d65040118537472696e6700012c6465736372697074696f6e040118537472696e67000200000400000502000800000507000c0808696f444c656166436f6e74726163745374617465000004012070726f6a656374731001505665633c28753132382c2050726f6a656374293e00001000000214001400000408081800180808696f1c50726f6a65637400000c01146f776e65721c011c4163746f7249640001106e616d65040118537472696e6700012c6465736372697074696f6e040118537472696e6700001c10106773746418636f6d6d6f6e287072696d6974697665731c4163746f724964000004002001205b75383b2033325d000020000003200000002400240000050300";
+  
+  const metadata = ProgramMetadata.from(meta2);
+
+  const getState = () => {
+
+    api.programState.read({ programId: programIDFT}, metadata ).then((result) => {
+      setFullState(result.toJSON());
+      alert.success("Successful state");
+    })
+    .catch(({ message }) => alert.error(message))
+  };
+
+  console.log(" " + programIDFT + " " + JSON.stringify(fullState))
+
 
   const text1 = "Leef Project es un proyecto enfocado a la recuperación de la flora y fauna de diversas zonas de Chiapas, el objetivo es recuperar la mayor parte de los hábitats el estado."
   const text2 = "EcoRescate es un ambicioso proyecto dedicado a la recuperación y preservación de la rica biodiversidad de la selva amazónica en Brasil una región vital para la vida silvestre. "
@@ -31,7 +55,7 @@ function Home(){
   const price2 = 1500;
   const price3 = 3500;
   const price4 = 2500;
-
+  
   const cardsDonation = [<CardDonation team={team1} title={title1} text={text1} price={price1} />, <CardDonation text={text1} team={team2} title={title2} price={price2}/>, <CardDonation text={text3} team={team3} title={title3} price={price3} />, <CardDonation  text={text4} team={team4} title={title4} price={price4} />];
 
   const cardsDonationN = [<CardDonation team={team1} title={title1} text={text1} price={price1} />,<CardDonation team={team1} title={title1} text={text1} price={price1} />,<CardDonation team={team1} title={title1} text={text1} price={price1} />, <CardDonation team={team1} title={title1} text={text1} price={price1} />, <CardDonation text={text1} team={team2} title={title2} price={price2}/>, <CardDonation text={text3} team={team3} title={title3} price={price3} />, <CardDonation  text={text4} team={team4} title={title4} price={price4} />];
@@ -73,7 +97,7 @@ function Home(){
               Juntos, creamos un futuro más sostenible. Nuestro equipo de expertos en contratos inteligentes y proyectos verdes se compromete a ser tu socio en la innovación. Somos lo suficientemente pequeños para ser ágiles, pero lo suficientemente grandes para impulsar tu visión a la velocidad del cambio que el mundo necesita.
               </p>
               <div className="flex flex-wrap gap-2 w-121">
-                <Button className='bg-green-500 text-gray-800 mt-9'>
+                <Button className='bg-green-500 text-gray-800 mt-9' onClick={getState}>
                     Explora Proyectos
                     <HiOutlineArrowRight className="ml-2 h-5 w-5 " />
                 </Button>

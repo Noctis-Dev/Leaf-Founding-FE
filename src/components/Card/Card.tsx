@@ -1,11 +1,16 @@
 'use client';
-
+import React from 'react';
 import { Card } from 'flowbite-react';
 import imageExample from '../../assets/img/esteban.jpeg';
 
+interface CardDonationProps {
+    text: string;
+    title: string;
+    team: string;
+    price: number;
+}
 
-
-function CardDonation({text, title, team, price}) {
+function CardDonation({text, title, team, price}: CardDonationProps) {
   return (
     <div>
         <Card

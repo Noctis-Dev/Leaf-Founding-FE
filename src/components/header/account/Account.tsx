@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import { useAccount } from "@gear-js/react-hooks";
 import { Wallet } from "./Wallet";

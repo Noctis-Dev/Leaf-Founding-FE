@@ -4,7 +4,13 @@ import { Account } from './account/Account';
 import logo from "../../assets/img/LogitoGod.svg"
 import senal from "../../assets/img/chart-bar.svg"
 import separator from "../../assets/img/linea.png"
-const Header = ({ isAccountVisible }) => {
+
+interface HeaderProps {
+  isAccountVisible: boolean;
+}
+
+
+const Header: React.FC<HeaderProps> = ({ isAccountVisible })=> {
   return (
     <Navbar fluid={true} rounded={true} style={{ backgroundColor: "#1F2A37" }} className='rounded-none'>
       <Navbar.Brand href="#" className="ml-[50px]">

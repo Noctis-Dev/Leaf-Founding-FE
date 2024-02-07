@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "esnext",
+      "strict": true,
+      "moduleResolution": "node",
+      "jsx": "react",
+      "types": ["vite/client"],
+      "allowSyntheticDefaultImports": true,
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
+    "exclude": ["node_modules"]
+}

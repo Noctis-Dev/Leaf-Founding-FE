@@ -1,5 +1,6 @@
-import { withProviders } from './hocs/index.jsx';
-import MainPage from './page/MainPage.jsx'
+import React from 'react'
+import { withProviders } from './hocs/index';
+import MainPage from './page/MainPage'
 import { GearApi } from '@gear-js/api';
 
 
@@ -37,4 +38,7 @@ function App() {
   )
 }
 
-export default App = withProviders(App);
+const AppWithProviders = withProviders(App);
+
+export default AppWithProviders;
+

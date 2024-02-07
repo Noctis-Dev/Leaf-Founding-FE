@@ -1,5 +1,4 @@
-'use client';
-
+import React from 'react';
 import { Button, } from 'flowbite-react';
 import { HiOutlineArrowRight, HiShoppingCart } from 'react-icons/hi';
 import { useApi, useAlert } from "@gear-js/react-hooks";
@@ -11,13 +10,14 @@ import {CardHorizontal} from '../components/Card/CardHorizontal'
 import { useState, useEffect } from 'react';
 import { AnyJson } from '@polkadot/types/types';
 
+
 function Home(){
 
   const { api } = useApi();
 
   const alert = useAlert();
 
-  const [fullState, setFullState] = useState();
+  const [fullState, setFullState] = useState<AnyJson>();
 
   const programIDFT = "0xdeca7bd098f6cbee049d0919e3fff73e1f0fa3ec9a083c9d644f86362a3b8613";
   const meta2 = "00020000000100000000010100000000000000000103000000fd0528000808696f18416374696f6e00010c2c48656c6c6f416374696f6e0000003443726561746550726f6a6563740801106e616d65040118537472696e6700012c6465736372697074696f6e040118537472696e670001003455706461746550726f6a6563740c01086964080110753132380001106e616d65040118537472696e6700012c6465736372697074696f6e040118537472696e67000200000400000502000800000507000c0808696f444c656166436f6e74726163745374617465000004012070726f6a656374731001505665633c28753132382c2050726f6a656374293e00001000000214001400000408081800180808696f1c50726f6a65637400000c01146f776e65721c011c4163746f7249640001106e616d65040118537472696e6700012c6465736372697074696f6e040118537472696e6700001c10106773746418636f6d6d6f6e287072696d6974697665731c4163746f724964000004002001205b75383b2033325d000020000003200000002400240000050300";
@@ -26,7 +26,10 @@ function Home(){
 
   const getState = () => {
 
-    api.programState.read({ programId: programIDFT}, metadata ).then((result) => {
+    api.programState.read({
+      programId: programIDFT,
+      payload: ""
+    }, metadata ).then((result) => {
       setFullState(result.toJSON());
       alert.success("Successful state");
     })
@@ -63,25 +66,26 @@ function Home(){
   const [index, setIndex] = useState(0);
   const cards = [<CardHorizontal text={text1} team={team1} title={title1}/>, <CardHorizontal text={text2} team={team2} title={title3}/>, <CardHorizontal text={text3} team={team3} title={title3}/>, <CardHorizontal text={text4} team={team4} title={title4}/>]; // Tus tarjetas
 
-    useEffect(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 2) % cards.length);
-    }, 6000); // Cambia la tarjeta cada 3 segundos
-
+    }, 6000); 
+  
     return () => clearInterval(interval); // Limpia el intervalo cuando el componente se desmonta
   }, [cards.length]);
+  
 
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const onPageChange = (page) => setCurrentPage(page);
+  const onPageChange = (page: React.SetStateAction<number>) => setCurrentPage(page);
 
   const startIndex = (currentPage - 1) * 2;
   const endIndex = startIndex + 2;
 
   const [currentPage2, setCurrentPage2] = useState(1);
 
-  const onPageChange2 = (page) => setCurrentPage2(page);
+  const onPageChange2 = (page: React.SetStateAction<number>) => setCurrentPage2(page);
 
   const startIndex2 = (currentPage2 - 1) * 3;
   const endIndex2 = startIndex2 + 3;

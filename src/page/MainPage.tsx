@@ -1,9 +1,9 @@
+import React from 'react'
 import { useAccount, useApi } from "@gear-js/react-hooks"
-import Header from "../components/header/Header.jsx"
-import {Sobre}  from "../components/Footer/Footer.jsx"
-import { ApiLoader } from "../components/loaders/ApiLoader.jsx"
- 
-import {Body} from "../components/Body/Body.jsx"
+import Header from "../components/header/Header"
+import {Sobre}  from "../components/Footer/Footer"
+import { ApiLoader } from "../components/loaders/ApiLoader"
+import {Body} from "../components/Body/Body"
 
 function MainPage (){
     const { isAccountReady } = useAccount()

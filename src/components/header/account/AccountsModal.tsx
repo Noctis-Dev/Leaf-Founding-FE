@@ -1,7 +1,13 @@
+import React from 'react';
 import { Modal } from "@gear-js/ui";
 import { Accounts } from "./Accounts";
 
-function AccountsModal({ accounts, close }) {
+interface AccountsModalProps{
+    accounts: any, 
+    close: any
+}
+
+function AccountsModal({ accounts, close }: AccountsModalProps) {
     return (
         <Modal heading='Connect' close={close} className="flex justify-center justify-items-center">
             {accounts ? (

@@ -6,7 +6,7 @@ import { Home } from '../../page/Home';
 import {ProbComp} from '../../page/ProbarComp';
 import {Donate} from "../Proyecto/Donate.jsx"
 import {Allp} from "../../page/Allproject"
-import {Mint} from '../Mint.jsx'
+
 function Body() {
   return (
     <div className="bg-gray-900 ">
@@ -18,8 +18,6 @@ function Body() {
             <Route path="/home" element={<Home/>}/>
             <Route path="/donate" element={<Donate/>}/>
             <Route path="/all" element={<Allp/>}/>
-            <Route path="/xd" element={<Mint/>}/>
-
         </Routes>
         </BrowserRouter>
         

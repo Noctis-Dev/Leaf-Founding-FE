@@ -1,9 +1,15 @@
 'use client';
-
+import React from 'react'; 
 import { Card } from 'flowbite-react';
 import { Badge } from 'flowbite-react';
 
-function CardHorizontal({text, title, team}) {
+interface CardHorizontalProps{
+  text: string;
+  title: string;
+  team: string;
+}
+
+function CardHorizontal({text, title, team}: CardHorizontalProps) {
   return (
     <section className='grid gap-8 lg:grid-cols-1 mt-5  '>
        <Card className='bg-gray-900 border-gray-800'>

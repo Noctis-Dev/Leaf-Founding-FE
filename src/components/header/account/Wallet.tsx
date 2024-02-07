@@ -1,10 +1,15 @@
+import React from 'react';
 import { AccountsButton } from "./AccountsButton.jsx";
 import { Avatar, Dropdown } from 'flowbite-react';
 import Identicon from "@polkadot/react-identicon";
 import { useAccount } from "@gear-js/react-hooks";
 
+interface WalletProps{
+    account: any,
+    onClick: any
+}
 
-function Wallet({ account, onClick }) {
+function Wallet({ account, onClick }: WalletProps) {
 
     const { logout } = useAccount();
 

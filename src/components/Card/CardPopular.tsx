@@ -1,7 +1,6 @@
 'use client';
-
-import { Card } from 'flowbite-react';
-import { Button } from 'flowbite-react';
+import React from 'react'; 
+import { Button, Card } from 'flowbite-react';
 import { HiOutlineArrowRight, HiShoppingCart } from 'react-icons/hi';
 
 function CardPopular() {
